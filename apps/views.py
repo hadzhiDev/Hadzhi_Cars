@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 
 from apps.models import Car, Brand
 from apps.filters import CarFilter
+from apps.forms import RegisterUserForm
 from apps.decorators import required_login_custom
 
 
@@ -59,7 +60,7 @@ def login_profile(request):
 
 class RegisterUser(CreateView,):
 
-    form_class = UserCreationForm
+    form_class = RegisterUserForm
     template_name = 'auth/register.html'
     success_url = reverse_lazy('login')
 
