@@ -1,0 +1,80 @@
+{% extends 'workspace/base.html' %}
+
+{% block title %}| Brands{% endblock title %}
+
+{% block work_content %}
+    <div class=" pt-20">
+        <div class="flex justify-between">
+            <div class="mb-4 text-xl font-medium">Brands:</div>
+            <div>
+                 <a href="{% url 'workspace_create_brand' %}" class="addCommentBtn">
+                    Add
+                    <i class="fa-solid fa-pen-to-square"></i>
+                 </a>
+            </div>
+        </div>
+    
+        <div>
+            <div class="flex justify-between bb mb-4 pb-2">
+                <div>
+                    <b>Name</b>
+                </div>
+                <div>
+                    <b>Actions</b>
+                </div>
+            </div>
+            <div class="">
+                <div>
+                    {% for brand in brands %}
+                    <div class="flex justify-between brand_cls mb-4 pb-2">
+                        <div>{{ brand.name }}</div>
+                        <div>
+                            <div class="flex gap-2 justify-end">
+                                <a href="{% url 'workspace_update_brand' id=brand.id %}" class="">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a href="{% url 'workspace_delete_brand' id=brand.id %}" class="">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="">
+                {% if brands.has_previous or brands.has_next %}
+                    <div class="pagination flex gap-2 pt-10 justify-center">
+                        {% if brands.has_previous %}
+                        <div class="page-item">
+                            <a class="page-link" href="?offset={{ brands.previous_page_number }}">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+            
+                        {% for i in brands.paginator.page_range %}
+                            {% if brands.number == i %}
+                            <div class="page-item active">
+                                <span class="page-link">{{ i }}</span>
+                            </div>
+                            {% else %}
+                                <div class="page-item">
+                                    <a class="page-link" href="?offset={{ i }}">{{ i }}</a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+            
+                        {% if brands.has_next %}
+                            <div class="page-item">
+                                <a class="page-link" href="?offset={{ brands.next_page_number }}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock work_content %}

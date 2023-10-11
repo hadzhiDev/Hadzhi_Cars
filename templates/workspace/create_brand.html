@@ -1,0 +1,26 @@
+{% extends 'workspace/base.html' %}
+
+{% block title %}| Add a new brand{% endblock title %}
+
+{% block work_content %}
+
+    <div class="mb-4">Add a new brand:</div>
+    <div>
+        <form action="{% url 'workspace_create_brand' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <lable for="name_input">Name <span class="text-danger">*</span></lable>
+                <input type="text" name="name" id="name_input"  class="form-control">
+            </div>
+            <div>
+                <button type="submit" class="">Create</button>
+            </div>
+            {% if message %}
+                <div class="mt-4  text-center">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock work_content %}

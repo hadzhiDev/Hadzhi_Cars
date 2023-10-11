@@ -1,0 +1,46 @@
+{% extends 'workspace/base.html' %}
+{% load static %}
+
+{% block title %}| Workspace{% endblock title %}
+
+{% block work_content %}
+    <div class="">
+        <div>
+            <div class="mb-6 pt-6 text-3xl">Welcome to WorkSpace</div>
+            <div class="flex justify-between mb-4 text-2xl">
+                <div>Your Cars:</div>
+                <div>
+                    <a href="{% url 'workspace_add_car' %}" class="bg-green-500 rounded-xl p-3">
+                        Add Cars <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="grid grid-cols-4">
+                {% for car in cars_list %}
+                    <div class="workspace_car_card text-white">
+                        <div class="card_image">
+                            <a class="" href="{% url 'workspace_detail_car' id=car.id %}">
+                                <img src='{{ car.image.url }}' class="" alt="">
+                            </a>
+                        </div>
+                        <div class="pt-4 pl-4 font-bold">{{car.model}}</div>
+                        <div class="pt-4 pl-4 font-bold">{{car.brand}}</div>
+                        <div class="flex justify-between items-center px-4 pb-2">
+                            <div class="color82 text-xs">{{car.year}}</div>
+                            <div> {{ car.price }}$</div>
+                        </div>
+                        <div class="p-4 flex justify-between">
+                            <a href="{% url 'workspace_edit_car' id=car.id %}" class="bg-amber-400 rounded-xl text-black p-3">Edit</a>
+                            <a href="{% url 'workspace_delete_car' id=car.id %}" class="bg-red-600 rounded-xl text-black p-3">Delete</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="text-center">
+                        <h3>No cars found</h3>
+                    </div>
+                {% endfor %}
+            </div>
+            {% include 'components/cars_pagination.html' %}
+        </div>
+    </div>
+{% endblock work_content %}

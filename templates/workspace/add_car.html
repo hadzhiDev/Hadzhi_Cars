@@ -1,0 +1,23 @@
+{% extends 'workspace/base.html' %}
+
+{% block title %}| Add a new car{% endblock title %}
+
+{% block work_content %}
+
+    <div class="mb-4">Add a new car:</div>
+    <div>
+        <form action="{% url 'workspace_add_car' %}" method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button type="submit" class="">Create</button>
+            </div>
+            {% if message %}
+                <div class="mt-4 text-danger text-center">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock work_content %}

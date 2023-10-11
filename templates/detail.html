@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  | {{ car.model }}
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="grid grid-cols-2 pt-10 gap-6">
+            <div class="detail_card_image">
+                <img class="w-full" src='{{ car.image.url }}' class="" alt="...">
+            </div>
+            <div>
+                <div class="mb-2 text-xl">
+                    <span class="font-medium">Модель:</span> {{car.model}}
+                </div>
+                <div class="mb-2 text-xl">
+                    <span class="font-medium">Марка:</span> {{car.brand}}
+                </div>
+                <div class="mb-2 text-xl">
+                    <span class="font-medium">Год выпуска:</span> {{car.year}}
+                </div>
+                <div class="mb-2 text-xl detail_genres">
+                    <span class="font-medium">Цена автомобиля:</span> {{car.price}}$
+                </div>
+                <div class="text-xl mb-2">
+                    <span class="font-medium">Описание автомобиля:</span> {{car.model}} {{car.overview}}
+                </div>
+                <div class="text-xl mb-2">
+                    <span class="font-medium">Цвет автомобиля</span> {{car.color}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

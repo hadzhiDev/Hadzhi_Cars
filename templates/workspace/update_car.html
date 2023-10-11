@@ -1,0 +1,25 @@
+{% extends 'workspace/base.html' %}
+
+{% block title %}| {{ car.model }}{% endblock title %}
+
+{% block work_content %}
+
+    <div class="pt-10">
+        <div class="mb-4">Updating car "{{ car.model }}":</div>
+        <div>
+            <form action="{% url 'workspace_edit_car' id=car.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <div>
+                    <button type="submit" class="bg-green-600 rounded-xl text-black p-3">Save</button>
+                </div>
+                {% if message %}
+                    <div class="mt-4 text-center">
+                        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+{% endblock work_content %}

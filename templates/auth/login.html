@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Login{% endblock title %}
+
+{% block content %}
+
+    <div class="login flex justify-center pt-10" id="loginId">
+        <div class="login_card" id="login_card">
+            <form action="{% url 'login' %}" id="login_form" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="text-center mb-6 text-xl font-medium">
+                    Sign in
+                </div>
+                <div class="mb-4 block">
+                    <input type="text" name="username" placeholder="Enter username" class="login_input2" required>
+                </div>
+                <div class="mb-4">
+                    <input type="password" name="password" placeholder="Enter password" class="login_input2" required>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="bg-amber-400 rounded-xl text-black login_btn">Login</button>
+                </div>
+                {% if message %}
+                    <div class="mt-4 text-red text-center">
+                        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock content %}

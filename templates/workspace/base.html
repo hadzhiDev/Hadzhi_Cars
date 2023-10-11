@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container ">
+        <div class="workspace_main">
+            <div class="">
+                {% block work_content %}{% endblock work_content %}
+            </div>
+            <div>
+                {% include 'components/workspace/sidebar.html' %}
+            </div>
+            
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% load static %}
+<nav>
+    <div class="container flex justify-between items-center">
+        <div class="text-2xl max-w-3xl font-bold text-white">
+            <span class="pr-2">HADZHI CARS</span><i class="fa-solid fa-car"></i>
+        </div>
+        <div class="nav_bar flex gap-10 text-lg items-center text-white">
+            <div>
+                <a href="{% url 'main' %}">Home</a>
+            </div>
+            {% include 'components/brands.html' %}
+            {% if not request.user.is_authenticated %}
+                <div>
+                    <a href="{% url 'login' %}">Login</a> |
+                    <a href="{% url 'register' %}" >Register</a>
+                </div>
+            {% else %}
+                <div class="text-white grid grid-cols-1 text-sm">
+                    <a role="button" tabindex="0" href="{% url 'profile' %}"><span>View profile</span></a>
+                    <a role="button" tabindex="0" href="{% url 'workspace' %}"><span>Workspace</span></a>
+                    <a role="button" tabindex="0" href="{% url 'logout' %}"><span>Logout</span></a>
+                </div>
+            {% endif %}
+
+        </div>
+        <div class="py-2">
+            <form class="flex" action="{% url 'main' %}" method='GET'>
+                <input class="me-2" name='search' type="search" value='{{ request.GET.search }}' aria-label="search">
+                <div class="search_btn ">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+{% comment %} {% if not request.user.is_authenticated %}
+    {% include 'components/auth/login_modal.html' %}
+{% endif %} {% endcomment %}

@@ -1,0 +1,27 @@
+<div class="workspace_sidebar mt-20">
+    <div class="p-2 ">
+        <div class="">
+            <form class="flex " action="{% url 'workspace' %}" method='GET'>
+                <input class="sidebar_search" name='search1' type="search" 
+                    value='{{ request.GET.search1 }}' aria-label="Search">
+                <button class="bg-green-600 px-2 sidebar_search_btn" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="flex justify-between pt-4 und_btns">
+            <a href="{% url 'workspace_brands' %}">Brands</a> 
+        </div>
+    </div>
+    <div class="flex gap-4 p-2 und_btns">
+        <div>
+            Brands:
+            {% if brands %}
+                {% for brand in brands %}
+                    <div class="pl-2"><a href="{% url 'workspace_filter_cars_by_brand' id=brand.id%}">{{ brand.name }}</a></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="p-2">
+        <a class="bg-amber-400 rounded-xl text-black p-3" href="{% url 'workspace' %}">Back to main page</a>
+    </div>
+</div> 

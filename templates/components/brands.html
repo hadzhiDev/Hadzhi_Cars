@@ -1,0 +1,17 @@
+{% load custom_tags %}
+{% load static %}
+
+{% get_all_brands as brands %}
+
+<div class="brands_card">
+    <div>
+        <a class="text-white py-10" href="">Brand</a>
+    </div>
+    <div id="brands" class="brands hidden">
+        {% for brand in brands %}
+            <div class="brand">
+                <a href="{% url 'cars_by_brand' id=brand.id %}">{{ brand.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
